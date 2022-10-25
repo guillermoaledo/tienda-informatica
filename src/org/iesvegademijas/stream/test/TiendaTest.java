@@ -118,7 +118,8 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();
 			
 			//TODO STREAMS
-			List<String> nombresYPrecios = listProd.stream()
+			List<String> nombresYPrecios = listProd
+					.stream()
 					.map(p -> "Nombre: " + p.getNombre() + ", Precio: " + p.getPrecio())
 					.collect(toList());
 			nombresYPrecios.forEach(System.out::println);
@@ -148,12 +149,13 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();
 			
 			//TODO STREAMS
-			List<Producto> listProdDolares = listProd.stream()
-													.map(p -> {
-														p.setPrecio(p.getPrecio()*0.99);
-														return p;
-													})
-													.collect(toList());
+			List<Producto> listProdDolares = listProd
+					.stream()
+					.map(p -> {
+						p.setPrecio(p.getPrecio()*0.99);
+						return p;
+					})
+					.collect(toList());
 			
 			prodHome.commitTransaction();
 		}
@@ -178,7 +180,8 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();		
 						
 			//TODO STREAMS
-			List<String> nombresYPreciosMayus = listProd.stream()
+			List<String> nombresYPreciosMayus = listProd
+					.stream()
 					.map(p -> "Nombre: " + p.getNombre().toUpperCase() + ", Precio: " + p.getPrecio())
 					.collect(toList());
 			nombresYPreciosMayus.forEach(System.out::println);
@@ -206,9 +209,10 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
-			List<String> nombresEIniciales = listFab.stream()
-													.map(f -> "Nombre: " + f.getNombre() + " " + f.getNombre().substring(0,2).toUpperCase())
-													.collect(toList());
+			List<String> nombresEIniciales = listFab
+					.stream()
+					.map(f -> "Nombre: " + f.getNombre() + " " + f.getNombre().substring(0,2).toUpperCase())
+					.collect(toList());
 			nombresEIniciales.forEach(System.out::println);
 					
 			fabHome.commitTransaction();
@@ -233,10 +237,11 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
-			List<Integer> codFabTieneProd = listFab.stream()
-													.filter(f -> f.getProductos().size() > 0)
-													.map(Fabricante::getCodigo)
-													.collect(toList());
+			List<Integer> codFabTieneProd = listFab
+					.stream()
+					.filter(f -> f.getProductos().size() > 0)
+					.map(Fabricante::getCodigo)
+					.collect(toList());
 			codFabTieneProd.forEach(System.out::println);
 		
 			fabHome.commitTransaction();
@@ -261,10 +266,11 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
-			List<String> nombresOrdenados = listFab.stream()
-													.map(Fabricante::getNombre)
-													.sorted((f1, f2) -> f2.compareTo(f1))
-													.collect(toList());
+			List<String> nombresOrdenados = listFab
+					.stream()
+					.map(Fabricante::getNombre)
+					.sorted((f1, f2) -> f2.compareTo(f1))
+					.collect(toList());
 			nombresOrdenados.forEach(System.out::println);
 		
 			fabHome.commitTransaction();
