@@ -3,6 +3,8 @@ package org.iesvegademijas.stream.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -294,6 +296,18 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();		
 						
 			//TODO STREAMS
+			List<String> nombresOrdenadosNombre = listProd
+					.stream()
+					.map(Producto::getNombre)
+					.sorted()
+					.collect(toList());
+			List<String> nombresOrdenadosPrecioDesc = listProd
+					.stream()
+					.sorted(Comparator.comparingDouble(Producto::getPrecio).reversed())
+					.map(Producto::getNombre)
+					.collect(toList());
+						
+			nombresOrdenadosPrecioDesc.forEach(System.out::println);
 			
 			prodHome.commitTransaction();
 		}
