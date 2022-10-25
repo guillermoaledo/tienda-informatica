@@ -118,6 +118,10 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();
 			
 			//TODO STREAMS
+			List<String> nombresYPrecios = listProd.stream()
+					.map(p -> "Nombre: " + p.getNombre() + ", Precio: " + p.getPrecio())
+					.collect(toList());
+			nombresYPrecios.forEach(System.out::println);
 	
 			
 			prodHome.commitTransaction();
@@ -144,6 +148,12 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();
 			
 			//TODO STREAMS
+			List<Producto> listProdDolares = listProd.stream()
+													.map(p -> {
+														p.setPrecio(p.getPrecio()*0.99);
+														return p;
+													})
+													.collect(toList());
 			
 			prodHome.commitTransaction();
 		}
