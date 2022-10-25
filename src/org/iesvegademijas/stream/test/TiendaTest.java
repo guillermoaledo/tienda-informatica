@@ -178,6 +178,10 @@ class TiendaTest {
 			List<Producto> listProd = prodHome.findAll();		
 						
 			//TODO STREAMS
+			List<String> nombresYPreciosMayus = listProd.stream()
+					.map(p -> "Nombre: " + p.getNombre().toUpperCase() + ", Precio: " + p.getPrecio())
+					.collect(toList());
+			nombresYPreciosMayus.forEach(System.out::println);
 		
 			prodHome.commitTransaction();
 		}
@@ -202,6 +206,10 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
+			List<String> nombresEIniciales = listFab.stream()
+													.map(f -> "Nombre: " + f.getNombre() + " " + f.getNombre().substring(0,2).toUpperCase())
+													.collect(toList());
+			nombresEIniciales.forEach(System.out::println);
 					
 			fabHome.commitTransaction();
 		}
@@ -225,6 +233,11 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
+			List<Integer> codFabTieneProd = listFab.stream()
+													.filter(f -> f.getProductos().size() > 0)
+													.map(Fabricante::getCodigo)
+													.collect(toList());
+			codFabTieneProd.forEach(System.out::println);
 		
 			fabHome.commitTransaction();
 		}
@@ -248,6 +261,11 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
+			List<String> nombresOrdenados = listFab.stream()
+													.map(Fabricante::getNombre)
+													.sorted((f1, f2) -> f2.compareTo(f1))
+													.collect(toList());
+			nombresOrdenados.forEach(System.out::println);
 		
 			fabHome.commitTransaction();
 		}
