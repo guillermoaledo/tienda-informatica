@@ -272,6 +272,7 @@ class TiendaTest {
 					.stream()
 					.map(Fabricante::getNombre)
 					.sorted((f1, f2) -> f2.compareTo(f1))
+					//.sorted(reverseOrder())
 					.collect(toList());
 			nombresOrdenados.forEach(System.out::println);
 		
