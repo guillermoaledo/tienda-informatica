@@ -333,6 +333,12 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
+			List<Fabricante> cincoPrimeros = listFab
+					.stream()
+					.limit(5)
+					.collect(toList());
+			
+			cincoPrimeros.forEach(System.out::println);
 		
 			fabHome.commitTransaction();
 		}
@@ -356,6 +362,14 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 					
 			//TODO STREAMS
+			List<Fabricante> result = listFab
+					.stream()
+					.skip(3)
+					.limit(2)
+					.collect(toList());
+			
+			result.forEach(System.out::println);
+					
 		
 			fabHome.commitTransaction();
 		}
