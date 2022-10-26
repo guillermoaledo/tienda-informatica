@@ -303,7 +303,7 @@ class TiendaTest {
 					.collect(toList());
 			List<String> nombresOrdenadosPrecioDesc = listProd
 					.stream()
-					.sorted(Comparator.comparingDouble(Producto::getPrecio).reversed())
+					.sorted(comparingDouble(Producto::getPrecio).reversed())
 					.map(Producto::getNombre)
 					.collect(toList());
 						
