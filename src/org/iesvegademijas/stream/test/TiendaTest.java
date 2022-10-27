@@ -927,6 +927,12 @@ class TiendaTest {
 			List<Fabricante> listFab = fabHome.findAll();
 
 			// TODO STREAMS
+			var result = listFab
+					.stream()
+					.map(f -> "Fabricante: " + f.getNombre() + "\n\t\t" + "Productos: \n\t\t" + f.getProductos().stream().map(p -> p.getNombre()).collect(joining("\n\t\t")) + "\n")
+					.collect(toList());
+			
+			result.forEach(System.out::println);
 
 			fabHome.commitTransaction();
 		} catch (RuntimeException e) {
